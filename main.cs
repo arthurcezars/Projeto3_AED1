@@ -11,6 +11,7 @@ class MainClass {
     string morador;
     int bloco, apartamento, hora;
 
+    // Instanciando a classe Reservar
     Reservar rv = new Reservar("nome", 1, 1003, 6);
     List<Reservar> lista = new List<Reservar>();
 
@@ -30,6 +31,7 @@ class MainClass {
           Console.Write("Informe a hora que deseja reservar (6 as 22): ");
           hora = int.Parse(Console.ReadLine());
 
+          // Verifica se a hora que o usuario quer reservar esta disponivel
           verificando = false;
           for(int i = 0; i < lista.Count; i++){
             if(lista[i].Hora == hora){
@@ -48,9 +50,11 @@ class MainClass {
           }
 
         }else{
+          // Encerra o codigo
           if(aux == 2){
           teste = 2;
           }else{
+            // Mostra as reservas feitas
             if(aux == 3){
               for(int i = 0; i < lista.Count; i++){
               Console.WriteLine("Morador: {0} / Bloco: {1} / Unidade: {2} / Hora: {3}", lista[i].Nome, lista[i].Bloco, lista[i].Unidade, lista[i].Hora);
@@ -79,12 +83,13 @@ class MainClass {
 
     try{
 
+      // Salva os dados coletados em um arquivo
       using (StreamWriter writer = new StreamWriter("Reservas.txt", true)){
         for(int i = 0; i < lista.Count; i++){
           if(i == 0){
-            writer.WriteLine("Morador Bloco Unidade Hora");
+            writer.WriteLine("Data das reservas: {0}/{1}/{2}", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
           }
-          writer.WriteLine(lista[i].Nome +" "+ lista[i].Bloco +" "+ lista[i].Unidade +" "+ lista[i].Hora);
+          writer.WriteLine(lista[i].Nome +" / "+ lista[i].Bloco +" / "+ lista[i].Unidade +" / "+ lista[i].Hora);
         }
       }
 
